@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+{% if user.is_autheticated %} <p>Hello , {{user.username}} </p>
+    {% else %} <p class="user"> HELLO WORLD !</p>  
+    {%endif%}
+    
+
+<p>im on index.html</p>
+{% endblock content%}

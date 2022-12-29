@@ -1,0 +1,7 @@
+with connection.cursor() as cursor :
+    database  = "CREATE DATABASE [IF NOT EXIST] scrappator"
+    table_data = "CREATE TABLE [IF NOT EXIST] `scrappator`.`data` ( `id` INT NOT NULL AUTO_INCREMENT , `nom` VARCHAR(30) NOT NULL , `image` LONGBLOB NOT NULL , `lien` VARCHAR(255) NOT NULL , `prix` INT(30) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;"
+    table_users = " CREATE TABLE [IF NOT EXIST] `scrappator`.`user` ( `id` INT NOT NULL AUTO_INCREMENT , `nom` VARCHAR(255) NOT NULL ,`email` VARCHAR(255) NOT NULL , `password` VARCHAR(255) NOT NULL, PRIMARY KEY (`id`)) ENGINE = InnoDB;" 
+    table_sneakers_link = "CREATE TABLE [IF NOT EXIST] `scrappator`.`sneakers_links` ( `id` INT NOT NULL AUTO_INCREMENT , `nom` VARCHAR(30) NOT NULL ,`url` VARCHAR(255) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;)"
+    cursor.execute(database,table_users,table_data,table_users)
+    connection.commit

@@ -1,10 +1,25 @@
-from django.shortcuts import render
+from django.shortcuts import render , redirect
+from sql.inject import * 
+from django.conf import settings 
+from django.http import HttpResponse    
+from django.contrib.auth.decorators import login_required
 
-# Create your views here.
-from django.http import HttpResponse 
 
+@login_required
 def index(request):
-    return render(request ,'index.html')
-
+    context = {"title":"acceuil"}
+    return render(request ,'scrappator/index.html',context=context)
+@login_required
+def about(request):
+    context={"title":"about"}
+    return render(request ,'scrappator/about.html',context=context )
+@login_required
 def scrappator(request):
-    return HttpResponse('app WIP')
+    return render(request ,'scrappator/app.html',context={"title":"scrappator"})
+
+
+
+
+    
+
+

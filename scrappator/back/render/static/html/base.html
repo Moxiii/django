@@ -1,0 +1,28 @@
+{% load static i18n %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>{% block site_title_page %}{{title}}{% endblock %}</title>
+</head>
+<body>
+<div class="container">
+    <div class="contained">
+        <div class="title">
+        <h1>{% block page_content_title %}{{title}}{% endblock %}</h1>
+        </div>
+    <div class="content">
+        {% block content %}
+        {% endblock %}
+        {% if user.is_authenticated %}
+            <p>Vous êtes connecté en tant que {{ request.user }}. <a href="{% url 'logout' %}">Se déconnecter</a></p>
+        {% endif %}
+    </div>
+    </div>
+
+</div>
+</body>
+</html>

@@ -26,7 +26,8 @@ SECRET_KEY = 'django-insecure-1-ymrvu2m*0(cntj-xo2iaw9+y*b+g32kekb+@_gj*!e40n&s(
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
+AUTH_USER_MODEL = 'authentication.User'
+LOGIN_URL = 'login'
 
 # Application definition
 
@@ -37,7 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'render'
+    'render',
+    'authentication'
+    
 ]
 
 MIDDLEWARE = [
@@ -51,11 +54,11 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'setup.urls'
-
+ROOT_DIR = os.path.dirname(os.path.realpath(__name__))
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR,'templates')],
+        'DIRS': [os.path.join(ROOT_DIR, 'render\static\html')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -76,8 +79,11 @@ WSGI_APPLICATION = 'setup.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'scrappator',
+        'USER':'root',
+        'PASSWORD':'',
+        'HOST':'localhost',
     }
 }
 
@@ -104,7 +110,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'fr-fr'
 
 TIME_ZONE = 'UTC'
 
@@ -117,12 +123,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__name__)))
-STATIC_ROOT = os.path.join(BASE_DIR, 'front/static')
+STATIC_ROOT = os.path.join(ROOT_DIR, 'static')
 STATIC_URL = '/static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-print("le base directory est " + BASE_DIR)
-print("le static root est  " + STATIC_ROOT)
+
